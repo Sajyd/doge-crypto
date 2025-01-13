@@ -86,13 +86,24 @@ body {
 }
 
 .toolbar {
- display: flex;
- justify-content: space-between;
- align-items: center;
+  display: flex;
+  align-items: center;
+}
+
+.app-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .toolbar-spacer {
   flex: 1 1 auto;
+}
+
+.buy-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .page-title {
@@ -104,15 +115,41 @@ body {
   margin-top: 50px;
 }
 
-.app-title {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
 .loading-spinner {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 50px auto;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 600px) {
+  
+  
+  .toolbar .button-text {
+    display: none;
+    padding: 0;
+  }
+  
+  .buy-button {
+    min-width: 0;
+    padding: 0 8px;
+  }
+
+  .toolbar .buy-button mat-icon {
+    margin: 0 auto !important;
+  }
+
+  .app-title {
+    gap: 0;
+  }
+}
+
+.content-container {
+  padding: 0 16px;
+}
+
+.app-title {
+  color: white;
+  text-decoration: none;
 }
