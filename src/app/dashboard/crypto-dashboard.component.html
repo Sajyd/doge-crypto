@@ -1,0 +1,38 @@
+<div class="container">
+  <ng-container *ngIf="cryptoData$ | async as cryptoData; else loading">
+    <mat-card *ngFor="let asset of cryptoData" 
+              class="crypto-card" 
+              [class.doge-card]="asset.id === 'dogecoin'">
+      <mat-card-header>
+        <mat-card-title>{{ asset.name }} ({{ asset.symbol }})</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Prix: ${{ asset.priceUsd | number:'1.2-6' }}</p>
+        <p [class]="percentToNumber(asset.changePercent24Hr) > 0 ? 'price-up' : 'price-down'">
+          Variation 24h: {{ asset.changePercent24Hr | number:'1.2-2' }}%
+        </p>
+        <p>Volume 24h: ${{ asset.volumeUsd24Hr | number:'1.0-0' }}</p>
+        <p>Capitalisation: ${{ asset.marketCapUsd | number:'1.0-0' }}</p>
+        
+        <div *ngIf="asset.id === 'dogecoin' && asset.exchanges?.length">
+          <h3>Meilleur échange pour DOGE (24h):</h3>
+          <p *ngIf="getBestExchange(asset.exchanges) as best">
+            {{ best.exchangeId }} - ${{ best.priceUsd | number:'1.2-6' }}
+            (Volume: ${{ best.volumeUsd24Hr | number:'1.0-0' }})
+          </p>
+          <a mat-raised-button 
+                  color="accent" 
+                  href="/doge-tickets"
+                  class="doge-tickets-button">
+                  <mat-icon>shopping_cart</mat-icon>
+                  <span>Acheter des tickets de transport avec DOGE</span>
+        </a>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+  
+  <ng-template #loading>
+    <mat-spinner class="loading-spinner"></mat-spinner>
+  </ng-template>
+</div>

@@ -1,0 +1,19 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.doge-tickets-button {
+  margin-top: 1rem;
+  width: 100%;
+  background-color: #ba9f33;
+  color: white;
+}
+
+.doge-tickets-button:hover {
+  background-color: #a18b2d;
+}
